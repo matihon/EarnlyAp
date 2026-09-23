@@ -119,6 +119,17 @@ jobs:
         with:
           name: Earnly-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error        run: npx cap copy android
+
+      - name: Build APK
+        working-directory: android
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Earnly-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           (values / "colors.xml").write_text(
               '''<?xml version="1.0" encoding="utf-8"?>
